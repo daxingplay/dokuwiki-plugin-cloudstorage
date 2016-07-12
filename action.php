@@ -44,7 +44,7 @@ class action_plugin_cloudstorage extends DokuWiki_Action_Plugin {
             if ($this->getConf('cdn_url')) {
                 $event->data['status'] = 301;
                 if ($this->getConf('force_decode_file_name')) {
-                    $file_relative_path = urldecode($file_relative_path);
+                    $file_relative_path = urlencode($file_relative_path);
                 }
                 $event->data['statusmessage'] = $this->getConf('cdn_url') . $file_relative_path;
             }
