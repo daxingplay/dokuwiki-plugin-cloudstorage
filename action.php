@@ -37,9 +37,12 @@ class action_plugin_cloudstorage extends DokuWiki_Action_Plugin {
         global $conf;
         $data = $event->data;
         $status = $data['status'];
-        if ($status == 200 && $this->getConf('cdn_url')) {
+        $cdn = $this->getConf('cdn_url');
+        if ($status == 200 && $cdn) {
             $file = $data['file'];
             $file_relative_path = str_replace($conf['mediadir'], '', $file);
+            $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || intval($_SERVER['SERVER_PORT']) === 443) ? 'https:' : 'http:';
+            $cdn = $protocol . str_replace(array('http:', 'https:'), '', $cdn);
 
             if ($this->getConf('force_decode_file_name')) {
                 $file_relative_path = urlencode($file_relative_path);
@@ -47,7 +50,7 @@ class action_plugin_cloudstorage extends DokuWiki_Action_Plugin {
                 $file_relative_path = utf8_decodeFN($file_relative_path);
             }
             $event->data['status'] = 301;
-            $event->data['statusmessage'] = $this->getConf('cdn_url') . $file_relative_path;
+            $event->data['statusmessage'] = $cdn . $file_relative_path;
         }
     }
 
