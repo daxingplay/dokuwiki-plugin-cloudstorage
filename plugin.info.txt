@@ -1,7 +1,7 @@
 base   cloudstorage
 author daxingplay
 email  daxingplay@gmail.com
-date   2016-07-12
+date   2017-04-18
 name   cloud storage plugin
 desc   Cloud Storage for your media files based on Aliyun OSS plugin
 url    https://github.com/daxingplay/dokuwiki-plugin-cloudstorage
