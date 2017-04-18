@@ -1,1 +1,6 @@
-.DS_Store.idea/*.iml*.iws*.ipr
+.DS_Store
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode
